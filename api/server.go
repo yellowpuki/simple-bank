@@ -7,12 +7,12 @@ import (
 
 // Server serves HTTP routes for out banking service.
 type Server struct {
-	store  *db.Store
+	store  db.Store
 	router *gin.Engine
 }
 
 // NewServer creates a new server and setup routing.
-func NewServer(store *db.Store) *Server {
+func NewServer(store db.Store) *Server {
 	server := &Server{store: store}
 	router := gin.Default()
 
@@ -29,6 +29,6 @@ func (server *Server) Start(address string) error {
 	return server.router.Run(address)
 }
 
-func errorResponce(err error) gin.H {
+func errorResponse(err error) gin.H {
 	return gin.H{"error": err.Error()}
 }
